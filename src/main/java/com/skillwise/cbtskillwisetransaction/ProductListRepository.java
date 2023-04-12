@@ -1,0 +1,6 @@
+package com.skillwise.cbtskillwisetransaction;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ProductListRepository extends JpaRepository<Product, Integer> {
+}
