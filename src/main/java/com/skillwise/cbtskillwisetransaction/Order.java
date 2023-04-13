@@ -28,4 +28,7 @@ public class Order {
     @Column(name = "comments", length = Integer.MAX_VALUE)
     private String comments;
 
+    @Column(name = "status", nullable = false, length = 20)
+    private String status;
+
 }

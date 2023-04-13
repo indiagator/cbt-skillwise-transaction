@@ -25,4 +25,7 @@ public class ProductOffer {
     @Column(name = "description", length = Integer.MAX_VALUE)
     private String description;
 
+    @Column(name = "status", length = 20)
+    private String status;
+
 }

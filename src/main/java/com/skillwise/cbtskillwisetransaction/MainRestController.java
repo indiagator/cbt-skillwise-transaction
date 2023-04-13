@@ -2,6 +2,8 @@ package com.skillwise.cbtskillwisetransaction;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -9,6 +11,8 @@ import org.springframework.web.client.RestTemplate;
 import java.io.DataInput;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/1.1")
@@ -28,6 +32,8 @@ public class MainRestController
     @PostMapping("save/offer")
     public ProductOffer saveOffer(@RequestBody ProductOffer offer)
     {
+        // Auth and Auth Code
+
         Integer tempId = (int) (Math.random()*10000);
 
         offer.setId(tempId);
@@ -40,6 +46,9 @@ public class MainRestController
     @PostMapping("save/product")
     public Product saveProduct(@RequestBody Product product)
     {
+        // Auth and Auth Code
+
+
         Integer tempId = (int) (Math.random()*10000);
 
         product.setId(tempId);
@@ -200,6 +209,13 @@ public class MainRestController
         ResponseEntity<String> response = restTemplate.getForEntity(url,String.class);
 
         return response.getBody();
+    }
+
+    @PostMapping("delete/order")
+    ResponseEntity<String> deleteOrder(@RequestParam("orderid") Integer orderid)
+    {
+        orderRepository.deleteById(orderid);
+        return new ResponseEntity<>(HttpStatusCode.valueOf(200));
     }
 
 
